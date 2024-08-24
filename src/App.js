@@ -1,13 +1,13 @@
-import logo from './logo.svg';
+import myImage from './waltuh.jpeg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={myImage} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload. Yes!!
+          Edit <code>src/App.js</code> and save to reload. yoooo mr white
         </p>
         <a
           className="App-link"
