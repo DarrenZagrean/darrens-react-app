@@ -3,9 +3,11 @@ import './style.css'
 
 const Form = ({handleSubmit, children}) => {
     return (
-        <form onSubmit={handleSubmit}>
-            {children}
-        </form>
+        <div>
+            <form className={'basic-form'} onSubmit={handleSubmit}>
+                {children}
+            </form>
+        </div>
     );
 };
 

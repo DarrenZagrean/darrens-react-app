@@ -52,6 +52,7 @@ const UserPage = () => {
 
                     {/*Move this to a separate input component that we can re-use*/}
                     <input
+                        className={'username-input'}
                         type="text"
                         value={name}
                         onChange={handleChange} style={inputStyle}
