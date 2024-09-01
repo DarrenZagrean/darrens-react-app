@@ -10,6 +10,9 @@
 # testing
 /coverage
 
+# vs
+.vs
+
 # production
 /build
 
@@ -19,9 +22,6 @@
 .env.development.local
 .env.test.local
 .env.production.local
-
-# vs
-.vs
 
 npm-debug.log*
 yarn-debug.log*
