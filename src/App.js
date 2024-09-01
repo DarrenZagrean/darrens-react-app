@@ -1,7 +1,7 @@
 // src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import UserPage from './components/UserPage';
+import UserPage from './pages/Users/Users';
 import './App.css'; // Add this line to include basic styles
 
 function App() {
