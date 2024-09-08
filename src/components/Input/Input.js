@@ -1,9 +1,15 @@
 
-import React, { useState } from 'react';
+import React from 'react';
+import './style.css'
 
-const Input = () => {
+const Input = ({className, type, value, onChange}) => {
     return (
-
+        <input
+            className={className}
+            type={type}
+            value={value}
+            onChange={onChange}
+        />
     );
 };
 

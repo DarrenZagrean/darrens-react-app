@@ -1,5 +1,6 @@
 // src/components/UserPage.js
 import React, { useState } from 'react';
+import Input from "../../components/Input/Input";
 import Form from '../../components/Form/Form'
 
 // Define the UserPage component
@@ -12,10 +13,18 @@ const UserPage = () => {
         setName(e.target.value);
     };
 
+    const onUsersResponse = (response) => {
+        if (response.status === 200) {
+            // Go to to-do page which is going to be build
+            alert(`Hello, ${name}!`); // Shows a message with the user's name
+        }
+    }
+
     // Function to handle form submission
     const usersHandleSubmit = (e) => {
-        e.preventDefault(); // Prevents the page from refreshing
-        alert(`Hello, ${name}!`); // Shows a message with the user's name
+        e.preventDefault(); // Prevents the page from refreshing;
+        fetch('https://66ddf1dcf7bcc0bbdcdf77c5.mockapi.io/api/users').then(onUsersResponse)
+        console.log('Request sent')
     };
 
     const pageStyle = {
@@ -28,13 +37,6 @@ const UserPage = () => {
         alignItems:'center',
         margin: 0,
     }
-
-    const inputStyle = {
-        marginTop: '30px', // Adds spacing above the form
-        fontSize: '29px',  // Makes the form text larger
-        color: '#008000',
-        fontFamily: 'arial',
-    };
 
     const buttonStyle = {
         marginTop: '30px', // Adds spacing above the form
@@ -49,14 +51,7 @@ const UserPage = () => {
             <Form handleSubmit={usersHandleSubmit}>
                 <label>
                     Enter your username:
-
-                    {/*Move this to a separate input component that we can re-use*/}
-                    <input
-                        className={'username-input'}
-                        type="text"
-                        value={name}
-                        onChange={handleChange} style={inputStyle}
-                    />
+                    <Input className={'username-input'} type={'text'} value={name} onChange={handleChange}></Input>
                 </label>
 
                 {/*Move this to a separate input component that we can re-use*/}
