@@ -15,8 +15,16 @@ const UserPage = () => {
     };
 
     const onUsersResponse = (response) => {
-        if (response.status === 200) {
-            alert(`Hello, ${name}!`);
+        if (response.status === 201) {
+            alert(`${name} was created!`);
+        }
+
+        if (response.status === 204) {
+            alert(`Welcome back ${name}!`);
+        }
+
+        if (response.status === 400) {
+            alert(`Something went wrong!`);
         }
     }
 
@@ -24,6 +32,7 @@ const UserPage = () => {
     const usersHandleSubmit = (e) => {
         e.preventDefault(); // Prevents the page from refreshing;
         fetch('https://66ddf1dcf7bcc0bbdcdf77c5.mockapi.io/api/users').then(onUsersResponse)
+        // fetch('http://127.0.0.1:8000/api/users/check_user?username=' + name).then(onUsersResponse)
         console.log('Request sent')
     };
 
