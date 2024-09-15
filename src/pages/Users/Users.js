@@ -37,9 +37,6 @@ const UserPage = () => {
         alignItems: 'center',
         margin: 0,
     };
-        alignItems:'center',
-        margin: 0,
-    }
 
     const buttonStyle = {
         marginTop: '30px', // Adds spacing above the form

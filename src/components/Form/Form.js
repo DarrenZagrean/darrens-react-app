@@ -11,8 +11,4 @@ const Form = ({handleSubmit, children}) => {
     );
 };
 
-<<<<<<< HEAD
 export default Form;
-=======
-export default Form;
->>>>>>> 7d22ae41a1c7afd6d6d5154060a7b50548883570
