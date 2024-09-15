@@ -1,6 +1,10 @@
 form.basic-form {
-    margin-top: 30px;
     font-size: 29px;
     color: #800000;
     font-family: "Comic Sans MS", 'Aria;', sans-serif;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Horizontally center the items */
+    align-items: center;     /* Vertically center the items */
 }

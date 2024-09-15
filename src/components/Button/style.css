@@ -1,6 +1,7 @@
-button{
-        marginTop: '30px'; 
-        fontSize: '29px'; 
-        color: '#BC13FE';
-        fontFamily: 'comic-sans';
+button {
+    font-size: 29px;
+    color: #BC13FE;
+    font-family: 'comic-sans';
+    height: 50px;
+    box-sizing: border-box;
 }
