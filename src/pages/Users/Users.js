@@ -1,13 +1,14 @@
-
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import Input from "../../components/Input/Input";
 import Form from '../../components/Form/Form';
 import Button from "../../components/Button/Button";
 
 // Define the UserPage component
-const UserPage = () => {
+const UserPage = ({ setUsername }) => { // Add setUsername as a prop
     // State to store the user's name
     const [name, setName] = useState('');
+    const navigate = useNavigate(); // Initialize the navigate function
 
     // Function to handle input changes
     const handleChange = (e) => {
@@ -29,12 +30,23 @@ const UserPage = () => {
     }
 
     // Function to handle form submission
-    const usersHandleSubmit = (e) => {
-        e.preventDefault(); // Prevents the page from refreshing;
-        fetch('https://66ddf1dcf7bcc0bbdcdf77c5.mockapi.io/api/users').then(onUsersResponse)
-        // fetch('http://127.0.0.1:8000/api/users/check_user?username=' + name).then(onUsersResponse)
-        console.log('Request sent')
-    };
+const usersHandleSubmit = (e) => {
+    e.preventDefault(); // Prevents the page from refreshing
+    fetch('https://66ddf1dcf7bcc0bbdcdf77c5.mockapi.io/api/users')
+        .then((response) => {
+            onUsersResponse(response); // Ensure response is passed to this function
+            if (response.status === 201 || response.status === 204 || response.status === 200) {
+                setUsername(name); // Call this function if it exists
+                navigate('/todo', {state: {username: name}}); // Navigate to To-Do page
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching user data:", error);
+        });
+};
+
+
+    
 
     const pageStyle = {
         backgroundColor: '#D3D3D3',
