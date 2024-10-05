@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Board from '../../components/Board/';
+import Checkbox from '../../components/Checkbox/';
 import { useLocation } from 'react-router-dom';
+
+
 const ToDoPage = () => {
     const location = useLocation();
     let usernameString = ''
@@ -8,10 +12,52 @@ const ToDoPage = () => {
     } else {
         usernameString = 'Your'
 }
+    // State for managing tasks
+    const [tasks, setTasks] = useState([
+    ]);
+
+    // State for the new task input
+    const [newTask, setNewTask] = useState('');
+
+    // Toggle task completed state
+    const toggleTask = (taskId) => {
+        setTasks(tasks.map(task =>
+            task.id === taskId ? { ...task, isChecked: !task.isChecked } : task
+        ));
+    };
+
+    // Add a new task to the list
+    const addTask = () => {
+        if (newTask.trim()) {
+            const newTaskObject = {
+                id: tasks.length + 1,
+                name: newTask,
+                isChecked: false
+            };
+            setTasks([...tasks, newTaskObject]);
+            setNewTask(''); // Clear the input after adding
+        }
+    };
+
     return (
         <div>
             <h1>{usernameString} To-Do List</h1>
-            {/* You'll add the actual to-do list functionality here later */}
+            {/* Input for adding new tasks */}
+            <input
+                type="text"
+                value={newTask}
+                onChange={(e) => setNewTask(e.target.value)}
+                placeholder="Enter a new task"
+                style={{ marginRight: '10px' }}
+            />
+            <button onClick={addTask}>Add Task</button>
+
+            {/* Display the task list in the Board component */}
+            <Board>
+                {tasks.map(task => (
+                    <Checkbox key={task.id} task={task} onToggle={toggleTask} />
+                ))}
+            </Board>
         </div>
     );
 };

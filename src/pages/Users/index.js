@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import Input from "../../components/Input/Input";
-import Form from '../../components/Form/Form';
-import Button from "../../components/Button/Button";
+import Input from "../../components/Input/";
+import Form from '../../components/Form/';
+import Button from "../../components/Button/";
 
 // Define the UserPage component
 const UserPage = ({ setUsername }) => { // Add setUsername as a prop
