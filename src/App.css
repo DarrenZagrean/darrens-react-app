@@ -2,6 +2,10 @@
   font-family: 'Comic Sans MS', sans-serif;
 }
 
+nav li {
+  list-style: none;
+}
+
 .App {
   text-align: center;
 }
