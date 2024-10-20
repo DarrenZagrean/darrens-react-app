@@ -27,11 +27,15 @@ function App() {
 
 function HomePage() {
   return (
-    <div>
-      <h1>Home Page</h1>
-      <p>Welcome to the Home Page. Go to the <Link to="/users">User Page</Link> to enter your name.</p>
+    <div className="home-container">
+      <h1>Welcome to the To-Do App</h1>
+      <p>An organizational tool</p>
+      <div className="home-links">
+        <Link to="/users" className="home-button">Go to User Page</Link>
+      </div>
     </div>
   );
 }
+
 
 export default App;

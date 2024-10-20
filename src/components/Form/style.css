@@ -1,10 +1,20 @@
 form.basic-form {
-    font-size: 29px;
-    color: ##000000;
-    font-family: 'comic-sans';
+    font-size: 24px; /* Slightly smaller to improve readability */
+    color: #000000;  /* Fixed the hex color code */
+    font-family: 'Comic Sans MS', sans-serif;
 
     display: flex;
-    flex-direction: row;
-    justify-content: center; /* Horizontally center the items */
-    align-items: center;     /* Vertically center the items */
+    flex-direction: column; /* Stacks items vertically */
+    justify-content: center; /* Centers the form content horizontally */
+    align-items: center; /* Centers the form content vertically */
+    gap: 15px; /* Adds space between form elements */
+
+    width: 100%; 
+    max-width: 400px; /* Restrict max width for a neat layout */
+    margin: auto; /* Centers the form on the page */
+    padding: 20px; 
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
