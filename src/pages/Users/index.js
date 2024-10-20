@@ -32,7 +32,7 @@ const UserPage = ({ setUsername }) => { // Add setUsername as a prop
     // Function to handle form submission
 const usersHandleSubmit = (e) => {
     e.preventDefault(); // Prevents the page from refreshing
-    fetch('https://66ddf1dcf7bcc0bbdcdf77c5.mockapi.io/api/users')
+    fetch(`http://127.0.0.1:8000/api/users/check_user?username=${name}`, {mode: 'cors'})
         .then((response) => {
             onUsersResponse(response); // Ensure response is passed to this function
             if (response.status === 201 || response.status === 204 || response.status === 200) {
