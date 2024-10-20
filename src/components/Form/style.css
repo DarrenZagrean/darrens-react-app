@@ -1,7 +1,7 @@
 form.basic-form {
     font-size: 24px; /* Slightly smaller to improve readability */
     color: #000000;  /* Fixed the hex color code */
-    font-family: 'Comic Sans MS', sans-serif;
+
 
     display: flex;
     flex-direction: column; /* Stacks items vertically */
