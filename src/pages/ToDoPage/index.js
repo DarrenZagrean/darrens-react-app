@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Board from '../../components/Board/';
 import Checkbox from '../../components/Checkbox/';
 import { useLocation } from 'react-router-dom';
@@ -27,6 +27,20 @@ const ToDoPage = () => {
         ));
     };
 
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/api/todos?username=${location.state?.username}`, {mode: 'cors'})
+            .then(async (response) => {
+                const data = await response.json();
+                const newData = data.map(function(item) {
+                    return {id: item.id, name: item.name, isChecked: item.is_checked}
+                })
+                setTasks(newData);
+            })
+            .catch((error) => {
+                console.error("Error fetching todo data:", error);
+            });
+    }, [])
+
     // Add a new task to the list
     const addTask = () => {
         if (newTask.trim()) {
@@ -35,6 +49,10 @@ const ToDoPage = () => {
                 name: newTask,
                 isChecked: false
             };
+
+            //make api call, if api call succeeds, the procced with the lines bellow
+
+
             setTasks([...tasks, newTaskObject]);
             setNewTask(''); // Clear the input after adding
         }
