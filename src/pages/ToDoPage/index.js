@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Board from '../../components/Board/';
 import Checkbox from '../../components/Checkbox/';
 import { useLocation } from 'react-router-dom';
+import './style.css';
 
 
 const ToDoPage = () => {
@@ -40,24 +41,28 @@ const ToDoPage = () => {
     };
 
     return (
-        <div>
-            <h1>{usernameString} To-Do List</h1>
+        <div className="todo-page">
+            <h1 className="todo-title">{usernameString} To-Do List</h1>
             {/* Input for adding new tasks */}
-            <input
-                type="text"
-                value={newTask}
-                onChange={(e) => setNewTask(e.target.value)}
-                placeholder="Enter a new task"
-                style={{ marginRight: '10px' }}
-            />
-            <button onClick={addTask}>Add Task</button>
+            <div className="wrapper">
+                <div className= "inputItem">
+                    <input
+                        type="text"
+                        value={newTask}
+                        onChange={(e) => setNewTask(e.target.value)}
+                        placeholder="Enter a new task"
+                        style={{ marginRight: '10px' }}
+                    />
+                    <button onClick={addTask}>Add Task</button>
+                </div>
 
-            {/* Display the task list in the Board component */}
-            <Board>
-                {tasks.map(task => (
-                    <Checkbox key={task.id} task={task} onToggle={toggleTask} />
-                ))}
-            </Board>
+                {/* Display the task list in the Board component */}
+                <Board>
+                    {tasks.map(task => (
+                        <Checkbox key={task.id} task={task} onToggle={toggleTask} />
+                    ))}
+                </Board>
+            </div>
         </div>
     );
 };

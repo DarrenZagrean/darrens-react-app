@@ -1,0 +1,23 @@
+/* style.css */
+.todo-page {
+  display: grid;
+  place-items: center;
+}
+.todo-title {
+  font-size: 3em;  /* Adjusted font size */
+  color: #FF0000;  /* Red color */
+  margin-bottom: 20px;
+}
+.wrapper {
+	border: 1px solid #ccc;
+	width: 50%;
+}
+.inputItem {
+	border: 1px;
+	border-style: solid;
+}
+.inputItem input{
+	display: block;
+	border: none;
+	outline: none;
+}

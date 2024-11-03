@@ -1,6 +1,7 @@
 import Input from "../Input";
 import React from 'react';
 
+
 const Checkbox = ({task, onToggle}) => {
     return <div style={{
         marginBottom: '10px',

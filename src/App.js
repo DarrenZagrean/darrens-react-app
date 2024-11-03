@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import UserPage from './pages/Users/';
 import ToDoPage from './pages/ToDoPage/'; // Ensure this matches your filename
 import './App.css'; // Add this line to include basic styles
+import HomePage from './pages/HomePage/';
 
 function App() {
   const [username, setUsername] = useState('');//defines state

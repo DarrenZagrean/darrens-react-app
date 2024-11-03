@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function HomePage() {
   return (
     <div className="home-container">
@@ -9,3 +10,4 @@ function HomePage() {
     </div>
   );
 }
+export default HomePage;
