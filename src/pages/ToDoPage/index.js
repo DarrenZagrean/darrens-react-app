@@ -50,11 +50,27 @@ const ToDoPage = () => {
                 isChecked: false
             };
 
-            //make api call, if api call succeeds, the procced with the lines bellow
+            try {
+                const response = fetch("http://localhost:8000/api/todos", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(newTaskObject),
+                });
+
+                if (response.ok) {
+                    const createdTask = response.json(); 
 
 
-            setTasks([...tasks, newTaskObject]);
-            setNewTask(''); // Clear the input after adding
+                    setTasks([...tasks, newTaskObject]);
+                    setNewTask(''); // Clear the input after adding
+                } else {
+                    console.error("Failed to add task:", response.status);
+                    alert("Error adding task. Please try again.");
+                }
+            } catch (error) {
+                console.error("Network error while adding task:", error);
+                alert("Network error. Please try again.");
+            }
         }
     };
 
