@@ -42,16 +42,16 @@ const ToDoPage = () => {
     }, [])
 
     // Add a new task to the list
-    const addTask = () => {
+    const addTask = async () => {
         if (newTask.trim()) {
             const newTaskObject = {
-                id: tasks.length + 1,
                 name: newTask,
-                isChecked: false
+                isChecked: false,
+                username: location.state?.username,
             };
 
             try {
-                const response = fetch("http://localhost:8000/api/todos", {
+                const response = await fetch("http://localhost:8000/api/todos", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(newTaskObject),
