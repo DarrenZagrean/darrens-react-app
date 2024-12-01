@@ -20,12 +20,42 @@ const ToDoPage = () => {
     // State for the new task input
     const [newTask, setNewTask] = useState('');
 
-    // Toggle task completed state
-    const toggleTask = (taskId) => {
-        setTasks(tasks.map(task =>
-            task.id === taskId ? { ...task, isChecked: !task.isChecked } : task
-        ));
+         
+    const toggleTask = async (taskId) => {
+    const taskToUpdate = tasks.find((task) => task.id === taskId);
+
+    if (!taskToUpdate) return;
+
+    const updatedTask = {
+        username: location.state?.username, // Get username from location state
+        id: taskId, // Pass the ID of the task being updated
+        is_checked: !taskToUpdate.isChecked, // Toggle the current isChecked value
     };
+
+    try {
+        // Make a PATCH request to update the task on the server
+        const response = await fetch(`http://127.0.0.1:8000/api/todos`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedTask),
+        });
+
+        if (response.ok) {
+            // If the update is successful, update the local state
+            setTasks((prevTasks) =>
+                prevTasks.map((task) =>
+                    task.id === taskId ? { ...task, isChecked: updatedTask.is_checked } : task
+                )
+            );
+        } else {
+            console.error("Failed to update task:", response.status);
+            alert("Error updating task. Please try again.");
+        }
+    } catch (error) {
+        console.error("Network error while updating task:", error);
+        alert("Network error. Please try again.");
+    }
+};
 
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/todos?username=${location.state?.username}`, {mode: 'cors'})
