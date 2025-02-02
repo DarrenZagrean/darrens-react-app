@@ -17,19 +17,19 @@ const UserPage = ({ setUsername }) => { // Add setUsername as a prop
     const validateInputs = () => {
         let newErrors = [];
         if (!/^[a-zA-Z]{3,64}$/.test(name)) {
-            newErrors.push("There's an error");
+            newErrors.push("Your username should be between 3 and 64 character long");
         }
         
         if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
-            newErrors.push("There's an error");
+            newErrors.push("Your email is invalid");
         }
         
-        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,64}$/.test(password)) {
-            newErrors.push("There's an error");
+        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,64}$/.test(password)) {
+            newErrors.push("Your password should be 8-64 chars and special character and all that");
         }
         
         if (password !== confirmPassword) {
-            newErrors.push("There's an error");
+            newErrors.push("Your passwords should match");
         }
 
         setErrors(newErrors);
