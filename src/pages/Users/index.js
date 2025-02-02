@@ -6,15 +6,41 @@ import Button from "../../components/Button/";
 
 // Define the UserPage component
 const UserPage = ({ setUsername }) => { // Add setUsername as a prop
-    // State to store the user's name
-    const [name, setName] = useState('');
+    const [name, setName] = useState('');// state to store username
+    const [email,setEmail] = useState('');// state to store email
+    const [password,setPassword] = useState('');// state to store password
+    const [confirmPassword, setConfirmPassword] = useState('');// state to store confirm password
+    const [errors, setErrors] = useState('');
     const navigate = useNavigate(); // Initialize the navigate function
+
+    // Sets username, email, password and confimr passowrd requirements.
+    const validateInputs = () => {
+        let newErrors = [];
+        if (!/^[a-zA-Z]{3,64}$/.test(name)) {
+            newErrors.push("There's an error");
+        }
+        
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+            newErrors.push("There's an error");
+        }
+        
+        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,64}$/.test(password)) {
+            newErrors.push("There's an error");
+        }
+        
+        if (password !== confirmPassword) {
+            newErrors.push("There's an error");
+        }
+
+        setErrors(newErrors);
+        return newErrors.length === 0;
+    };
 
     // Function to handle input changes
     const handleChange = (e) => {
         setName(e.target.value);
     };
-
+    //function that creates/welcomes user
     const onUsersResponse = (response) => {
         if (response.status === 201) {
             alert(`${name} was created!`);
@@ -32,6 +58,7 @@ const UserPage = ({ setUsername }) => { // Add setUsername as a prop
     // Function to handle form submission
 const usersHandleSubmit = (e) => {
     e.preventDefault(); // Prevents the page from refreshing
+    if (validateInputs()) { 
     fetch(`http://127.0.0.1:8000/api/users/check_user?username=${name}`, {mode: 'cors'})
         .then((response) => {
             onUsersResponse(response); // Ensure response is passed to this function
@@ -43,42 +70,36 @@ const usersHandleSubmit = (e) => {
         .catch((error) => {
             console.error("Error fetching user data:", error);
         });
+    }
 };
 
 
     
-
-    const pageStyle = {
-        backgroundColor: '#D3D3D3',
-        padding: '20px',
-        borderRadius: '8px',
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
-    };
-
-    const buttonStyle = {
-        marginTop: '30px', // Adds spacing above the form
-        fontSize: '29px',  // Makes the form text larger
-        color: '#BC13FE',
-        fontFamily: 'comic-sans',
-    }
-
     return (
-        <div style={pageStyle}>
+        <div style={{ backgroundColor: '#D3D3D3', padding: '20px', borderRadius: '8px', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Form handleSubmit={usersHandleSubmit}>
-                <label>
-                    Enter your username:
-                    <Input className={'username-input'} type={'text'} value={name} onChange={handleChange} />
+                <label>Username:
+                    <Input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                 </label>
-                <Button className={'submit-button'} type="submit">
-                    Submit
-                </Button>
+                <label>Email:
+                    <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                </label>
+                <label>Password:
+                    <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                </label>
+                <label>Confirm Password:
+                    <Input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                </label>
+                <Button type="submit">Submit</Button>
+                {errors.length > 0 && (
+                    <div style={{ color: 'red', marginTop: '10px' }}>
+                        {errors.map((error, index) => <p key={index}>{error}</p>)}
+                    </div>
+                )}
             </Form>
         </div>
     );
 };
+
 
 export default UserPage;
