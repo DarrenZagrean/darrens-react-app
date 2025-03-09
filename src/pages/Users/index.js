@@ -59,7 +59,7 @@ const UserPage = ({ setUsername }) => { // Add setUsername as a prop
 const usersHandleSubmit = (e) => {
     e.preventDefault(); // Prevents the page from refreshing
     if (validateInputs()) { 
-    fetch(`http://localhost:8000/api/users/signup`, {mode: 'cors', method: 'post',credentials: 'include',body: JSON.stringify({ username: name, email: email, password: password }),})
+    fetch(`http://localhost:8000/api/users/signup`, {method: 'post',credentials: 'include',body: JSON.stringify({ username: name, email: email, password: password }),})
         .then((response) => {
             onUsersResponse(response); // Ensure response is passed to this function
             if (response.status === 201 || response.status === 204 || response.status === 200) {

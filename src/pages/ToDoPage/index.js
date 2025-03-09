@@ -60,7 +60,6 @@ const ToDoPage = () => {
     useEffect(() => {
         fetch(`http://localhost:8000/api/todos?username=${location.state?.username}`, {
             credentials: 'include',
-            mode: 'cors'
         })
             .then(async (response) => {
                 const data = await response.json();

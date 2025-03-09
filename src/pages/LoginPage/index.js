@@ -22,7 +22,6 @@ const LoginPage = ({ setUsername }) => {
     e.preventDefault();
     if (validateInputs()) {
       fetch('http://localhost:8000/api/users/login', {
-        mode: 'cors',
         method: 'post',
         credentials: 'include',
         body: JSON.stringify({ email, password }),
