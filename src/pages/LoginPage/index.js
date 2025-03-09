@@ -21,9 +21,10 @@ const LoginPage = ({ setUsername }) => {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     if (validateInputs()) {
-      fetch('http://127.0.0.1:8000/api/users/login', {
+      fetch('http://localhost:8000/api/users/login', {
         mode: 'cors',
         method: 'post',
+        credentials: 'include',
         body: JSON.stringify({ email, password }),
       })
       .then(response => {
