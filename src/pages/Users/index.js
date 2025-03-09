@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate for navigation
 import Input from "../../components/Input/";
 import Form from '../../components/Form/';
 import Button from "../../components/Button/";
@@ -96,6 +96,10 @@ const usersHandleSubmit = (e) => {
                         {errors.map((error, index) => <p key={index}>{error}</p>)}
                     </div>
                 )}
+                 {/* Link to LoginPage */}
+                  <p style={{ marginTop: '10px' }}>
+                    Already have an account? <Link to="/login">Login here</Link>
+                   </p>
             </Form>
         </div>
     );
