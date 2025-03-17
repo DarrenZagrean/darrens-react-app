@@ -17,7 +17,7 @@ const UserPage = ({ setUsername }) => { // Add setUsername as a prop
     const validateInputs = () => {
         let newErrors = [];
         if (!/^[a-zA-Z]{3,64}$/.test(name)) {
-            newErrors.push("Your username should be between 3 and 64 character long");
+            newErrors.push("Your username should be between 3-64 characters long and only letters.");
         }
         
         if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
@@ -25,7 +25,7 @@ const UserPage = ({ setUsername }) => { // Add setUsername as a prop
         }
         
         if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,64}$/.test(password)) {
-            newErrors.push("Your password should be 8-64 chars and special character and all that");
+            newErrors.push("Password must be 8-64 characters and include: uppercase, lowercase, number, and special character.");
         }
         
         if (password !== confirmPassword) {
@@ -58,6 +58,7 @@ const UserPage = ({ setUsername }) => { // Add setUsername as a prop
     // Function to handle form submission
 const usersHandleSubmit = (e) => {
     e.preventDefault(); // Prevents the page from refreshing
+    setErrors([]); //clears previous errors
     if (validateInputs()) { 
     fetch(`http://localhost:8000/api/users/signup`, {method: 'post',credentials: 'include',body: JSON.stringify({ username: name, email: email, password: password }),})
         .then((response) => {

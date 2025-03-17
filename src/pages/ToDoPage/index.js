@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import Board from '../../components/Board/';
 import Checkbox from '../../components/Checkbox/';
 import {useLocation} from 'react-router-dom';
@@ -131,7 +132,11 @@ const ToDoPage = () => {
                         <Checkbox key={task.id} task={task} onToggle={toggleTask}/>
                     ))}
                 </Board>
+
             </div>
+            <Link to="/login" style={{ marginTop: '20px', display: 'inline-block' }}> 
+             Back to Login
+            </Link> 
         </div>
     );
 };

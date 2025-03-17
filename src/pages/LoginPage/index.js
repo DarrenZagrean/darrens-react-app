@@ -30,9 +30,11 @@ const LoginPage = ({ setUsername }) => {
         if (response.status === 200) {
           setUsername(email);
           navigate('/todo', { state: { username: email } });
-        } else {
-          alert("Login failed!");
-        }
+        } else if (response.status === 401) {
+  setErrors(["Invalid email or password"]);
+} else {
+  setErrors(["Something went wrong. Please try again later."]);
+}
       })
       .catch(error => {
         console.error('Error:', error);
