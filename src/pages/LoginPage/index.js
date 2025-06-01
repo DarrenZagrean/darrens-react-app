@@ -64,6 +64,9 @@ const LoginPage = ({ setUsername }) => {
           No account? <Link to="/signup">Create one here</Link>
         </p>
       </Form>
+      <p>
+           <Link to="/forgot-password">Forgot Password?</Link>
+      < /p>
     </div>
   );
 };

@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ForgotPasswordPage from './pages/LoginPage/ForgotPasswordPage';
+import ResetPasswordPage from './pages/LoginPage/ForgotPasswordPage/ResetPasswordPage';
 import LoginPage from './pages/LoginPage';
-import UserPage from './pages/Users/';
-import ToDoPage from './pages/ToDoPage/'; // Ensure this matches your filename
-import './App.css'; // Add this line to include basic styles
-
+import UserPage from './pages/Users';
+import ToDoPage from './pages/ToDoPage';
+import './App.css';
 
 function App() {
-  const [username, setUsername] = useState('');//defines state
+  const [username, setUsername] = useState('');
+
   return (
     <Router>
       <div className="App">
-        <nav>
-        </nav>
         <Routes>
-            <Route path="/" element={<LoginPage setUsername={setUsername} />} />
-            <Route path="/login" element={<LoginPage setUsername={setUsername} />} />
-            <Route path="/signup" element={<UserPage setUsername={setUsername} />} />
-            <Route path="/todo" element={<ToDoPage />} /> {/* Ensure this points to your ToDoPage component */}
+          <Route path="/" element={<LoginPage setUsername={setUsername} />} />
+          <Route path="/login" element={<LoginPage setUsername={setUsername} />} />
+          <Route path="/signup" element={<UserPage setUsername={setUsername} />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/todo" element={<ToDoPage />} />
         </Routes>
       </div>
     </Router>
   );
 }
-
-
 
 export default App;
