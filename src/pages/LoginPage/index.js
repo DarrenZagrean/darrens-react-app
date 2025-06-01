@@ -51,6 +51,9 @@ const LoginPage = ({ setUsername }) => {
         <label>Password:
           <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
+        <p>
+           <Link to="/forgot-password">Forgot Password?</Link>
+        </p>
         <Button type="submit">Login</Button>
 
         {errors.length > 0 && (
@@ -64,9 +67,7 @@ const LoginPage = ({ setUsername }) => {
           No account? <Link to="/signup">Create one here</Link>
         </p>
       </Form>
-      <p>
-           <Link to="/forgot-password">Forgot Password?</Link>
-      < /p>
+
     </div>
   );
 };

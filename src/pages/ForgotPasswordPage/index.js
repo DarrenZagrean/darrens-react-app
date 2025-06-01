@@ -9,7 +9,10 @@ const ForgotPasswordPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/api/forgot-password?email=${encodeURIComponent(email)}`);
+      const response = await fetch(`http://localhost:8000/api/users/forgot-password`, {
+        method: 'post',
+        credentials: 'include',
+        body: JSON.stringify({ email }),});
       if (response.ok) {
         setMessage('Success! Check your inbox.');
       } else {

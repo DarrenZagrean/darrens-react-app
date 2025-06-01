@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ForgotPasswordPage from './pages/LoginPage/ForgotPasswordPage';
-import ResetPasswordPage from './pages/LoginPage/ForgotPasswordPage/ResetPasswordPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 import LoginPage from './pages/LoginPage';
 import UserPage from './pages/Users';
 import ToDoPage from './pages/ToDoPage';
